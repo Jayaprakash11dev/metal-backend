@@ -8,8 +8,19 @@ import rateRoutes from './routes/rate.routes.js';
 
 dotenv.config();
 const app = express();
+const corsOptions = {
+  origin: [
+    'https://metal-management-frontend.vercel.app',
+    'http://localhost:5173',
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization', 'auth'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
