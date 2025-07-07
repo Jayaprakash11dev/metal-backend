@@ -6,28 +6,6 @@ This is the backend server for the Metal Management application. It handles APIs
 
 [https://metal-backend-4llr.onrender.com] (https://metal-backend-4llr.onrender.com)
 
----
-
-## 📂 Project Structure
-
-metal-backend/
-├── src/
-│ ├── controllers/
-│ ├── models/
-│ ├── middleware/
-│ ├── routes/
-│ ├── utils/
-│ └── app.js
-├── .env
-├── .gitignore
-├── package.json
-└── README.md
-
-
----
-
-
----
 
 ## ⚙️ Technologies Used
 
