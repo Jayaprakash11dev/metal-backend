@@ -1,6 +1,6 @@
 import { body, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
-import { protect } from "../auth.js";
+import { protect } from "./auth.js";
 
 
 const validateResult = (req, res, next) => {
@@ -26,16 +26,15 @@ export const validatePurity = [
     .notEmpty().withMessage("Value is required"),
   validateResult,
 ];
-
 export const validateUpdatePurity = [
   protect,
-
   param("id")
     .notEmpty().withMessage("Purity ID is required")
     .custom((value) => mongoose.Types.ObjectId.isValid(value))
     .withMessage("Invalid Purity ID format"),
-
-  validateResult,
+  body("metal").optional().isString(),
+  body("value").optional().isString(),
+  validateResult
 ];
 
 

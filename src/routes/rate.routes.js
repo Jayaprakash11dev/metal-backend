@@ -11,7 +11,7 @@ import {
   validateGetLatestRate,
   validateGetRateHistory,
   validateDeleteRate
-} from "../middleware/validation/rateValidation.js";
+} from "../middleware/rateValidation.js";
 
 const router = express.Router();
 

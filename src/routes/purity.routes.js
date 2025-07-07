@@ -6,7 +6,7 @@ import {
   deletePurity,
 } from '../controllers/purity.controller.js';
 import { protect } from '../middleware/auth.js';
-import { validateDeletePurity, validatePurity, validateUpdatePurity } from '../middleware/validation/purityValidation.js';
+import { validateDeletePurity, validatePurity, validateUpdatePurity } from '../middleware/purityValidation.js';
 
 const router = express.Router();
 

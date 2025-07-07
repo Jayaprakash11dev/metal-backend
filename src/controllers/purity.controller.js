@@ -42,17 +42,18 @@ export const getPurities = async (req, res) => {
 
 export const updatePurity = async (req, res) => {
   const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return errorResponse(res, 400, "Invalid ID format");
-  }
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty())
-    return errorResponse(res, 422, "Validation failed", errors.array());
+  const { metal, value } = req.body;
 
   try {
-    const updated = await Purity.findByIdAndUpdate(id, req.body, { new: true });
+    const updateData = {};
+    if (metal) updateData.metal = metal;
+    if (value) updateData.value = value;
+
+    if (Object.keys(updateData).length === 0) {
+      return errorResponse(res, 400, "No valid fields provided for update");
+    }
+
+    const updated = await Purity.findByIdAndUpdate(id, updateData, { new: true });
     if (!updated) return errorResponse(res, 404, "Purity not found");
 
     return successResponse(res, 200, "Purity updated successfully", updated);

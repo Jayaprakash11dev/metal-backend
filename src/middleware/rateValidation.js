@@ -1,6 +1,6 @@
 import { body, query, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
-import { protect } from "../auth.js";
+import { protect } from "./auth.js";
 
 const validateResult = (req, res, next) => {
   const errors = validationResult(req);
@@ -28,10 +28,6 @@ export const validateRate = [
   body("rate")
     .notEmpty().withMessage("Rate is required")
     .isNumeric().withMessage("Rate must be a number"),
-
-  body("date")
-    .optional()
-    .isISO8601().withMessage("Date must be in ISO format (YYYY-MM-DD)"),
 
   validateResult,
 ];
