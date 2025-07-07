@@ -1,16 +1,23 @@
-import express from 'express';
-import { protect } from '../middleware/auth.js';
+import express from "express";
 import {
   addRate,
-  deleteRate,
   getLatestRate,
   getRateHistory,
-} from '../controllers/rate.controller.js';
+  deleteRate,
+} from "../controllers/rate.controller.js";
+
+import {
+  validateRate,
+  validateGetLatestRate,
+  validateGetRateHistory,
+  validateDeleteRate
+} from "../middleware/validation/rateValidation.js";
 
 const router = express.Router();
 
-router.post('/', protect, addRate);
-router.get('/latest', protect, getLatestRate);
-router.get('/history', protect, getRateHistory);
-router.delete("/:id", protect, deleteRate);
+router.post("/", validateRate, addRate);
+router.get("/latest", validateGetLatestRate, getLatestRate);
+router.get("/history", validateGetRateHistory, getRateHistory);
+router.delete("/:id", validateDeleteRate, deleteRate);
+
 export default router;

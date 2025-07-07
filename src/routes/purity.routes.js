@@ -1,5 +1,4 @@
 import express from 'express';
-import { body } from 'express-validator';
 import {
   createPurity,
   getPurities,
@@ -7,17 +6,16 @@ import {
   deletePurity,
 } from '../controllers/purity.controller.js';
 import { protect } from '../middleware/auth.js';
+import { validateDeletePurity, validatePurity, validateUpdatePurity } from '../middleware/validation/purityValidation.js';
 
 const router = express.Router();
 
-router.get('/', protect, getPurities);
-router.post(
-  '/',
-  protect,
-  [body('value').notEmpty(), body('metal').isIn(['Gold', 'Silver', 'Platinum'])],
-  createPurity
-);
-router.put('/:id', protect, updatePurity);
-router.delete('/:id', protect, deletePurity);
+
+router.post("/", validatePurity, createPurity);
+router.get("/", protect, getPurities);
+router.put("/:id", validateUpdatePurity, updatePurity);
+router.delete("/:id", validateDeletePurity, deletePurity);
+
 
 export default router;
+
