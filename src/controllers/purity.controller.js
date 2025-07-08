@@ -31,7 +31,7 @@ export const createPurity = async (req, res) => {
 
 export const getPurities = async (req, res) => {
   try {
-    const purities = await Purity.find({ activeStatus: "Active" }).sort({ metal: 1, value: 1 });
+    const purities = await Purity.find().sort({ metal: 1, value: 1 });
     return successResponse(res, 200, "Purities fetched successfully", purities);
   } catch (err) {
     return errorResponse(res, 500, "Server error while fetching purities", err.message);

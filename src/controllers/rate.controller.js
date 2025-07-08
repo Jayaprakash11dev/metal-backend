@@ -48,8 +48,7 @@ export const getRateHistory = async (req, res) => {
     const { metal, purityId } = req.query;
 
     const query = {
-      metal,
-      activeStatus: "Active"
+      metal
     };
 
     if (purityId) {
@@ -88,3 +87,5 @@ export const deleteRate = async (req, res) => {
     return errorResponse(res, 500, "Failed to deactivate rate", err.message);
   }
 };
+
+
